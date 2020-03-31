@@ -3,4 +3,10 @@
     <string name="imagen_launcher">imagen launcher</string>
 
     <string name="item_menu_titulo_sample">Titulo Opción</string>
+    <string name="Pregunta">Letra con la que empieza el nombre del animal:</string>
+    <string name="buttonRespuesta">O</string>
+    <string name="buttonRespuesta1">A</string>
+    <string name="buttonRespuesta2">U</string>
+    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
 </resources>
