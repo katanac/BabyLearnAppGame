@@ -24,14 +24,16 @@ public class MenuNvlActividad extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Fragment fragmento = getSupportFragmentManager().findFragmentById(R.id.contenedor);
         if (fragmento == null) {
-            fragmento = MenuNvlFragmento.obtenerInstancia();
+            fragmento  = MenuNvlFragmento.obtenerInstancia();
             agregarFragmento(R.id.contenedor, fragmento);
         }
     }
 
     public void agregarFragmento(int containerViewId, Fragment fragment) {
+
         FragmentTransaction fragmentTransaction = this.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(containerViewId, fragment);
         fragmentTransaction.commit();
+
     }
 }
