@@ -10,11 +10,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
         <com.synnapps.carouselview.CarouselView
             android:id="@+id/carousel_juego"
-            android:layout_width="wrap_content"
-            android:padding="5dp"
-            android:layout_height="400dp"
+            android:layout_width="250dp"
+            android:padding="3dp"
+            android:layout_height="260dp"
             app:pageColor="@color/colorAccent"
             app:slideInterval="300"
             app:strokeColor="#FF777777"
@@ -23,11 +29,12 @@
             app:radius="6dp"
             android:layout_margin="15dp"/>
 
+        </LinearLayout>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_crear_entidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="crearEntidadPrueba"
             android:background="#111119"
             android:textColor="#FFFFFF"
             android:layout_margin="2dp"
@@ -37,7 +44,6 @@
             android:id="@+id/btn_consultar_entidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="consultarEntidadPrueba"
             android:background="#111119"
             android:textColor="#FFFFFF"
             android:layout_margin="2dp"
