@@ -4,22 +4,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.learningbaby.babylearning.R;
+import com.learningbaby.babylearning.preguntas.PreguntasActividad;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class MenuNvlFragmento extends Fragment {
+public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
 
     //region Atributos
     CarouselView carouselView;
+    Button btnnvl1;
+    Button btnnvl2;
     //endregion
 
     //region Instancia
@@ -39,7 +46,10 @@ public class MenuNvlFragmento extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         carouselView = (view.findViewById(R.id.carousel_juego));
+        btnnvl1 = (view.findViewById(R.id.btn_nivel_uno));
+        btnnvl2 = (view.findViewById(R.id.btn_nivel_dos));
         llenadoCarouselView(carouselView);
+        btnnvl1.setOnClickListener(this);
     }
     //endregion
 
@@ -81,6 +91,20 @@ public class MenuNvlFragmento extends Fragment {
 
     ImageClickListener listenerOnclick = position ->
             Toast.makeText(getActivity(), obtenerNombresCarrousel()[position], Toast.LENGTH_SHORT).show();
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_nivel_uno:
+                Objects.requireNonNull(getContext()).startActivity(PreguntasActividad.obtenerIntencion(getContext()));
+                break;
+            case R.id.btn_nivel_dos:
+                Toast.makeText(getContext(), "estoy presionando el boton del nivel dos", Toast.LENGTH_LONG).show();
+                break;
+
+        }
+    }
     //endregion
+
 
 }

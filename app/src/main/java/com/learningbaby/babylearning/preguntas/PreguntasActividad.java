@@ -1,10 +1,10 @@
 package com.learningbaby.babylearning.preguntas;
 
-import android.content.DialogInterface;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,30 +17,37 @@ import java.util.ArrayList;
 public class PreguntasActividad extends AppCompatActivity {
 
 
-    private ImageView ImagenPregunta;
-    private Button RespuestaBoton1, RespuestaBoton2, RespuestaBoton3;
-
+    //region Atributos
     private String rightAnswer;
+    private ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
+    //endregion
 
-    ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
+    //region Intencion
+    public static Intent obtenerIntencion(Context contexto) {
+        return new Intent(contexto, PreguntasActividad.class);
+    }
+    //endregion
 
-    String quizData[][] = {
-            // {"Image Name", "Right Answer", "Choice1", "Choice2", "Choice3"}
-            {"abeja", "A", "E", "I", "O"},
-    };
+    //region Constructor
+//    public PreguntasActividad(String rightAnswer) {
+//        this.rightAnswer = rightAnswer;
+//    }
+    //endregion
 
+    //region Sobrecargas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragmento_preguntas);
-        ImagenPregunta = findViewById(R.id.ImagenPregunta);
 
-        RespuestaBoton1 = findViewById(R.id.button);
-        RespuestaBoton2 = findViewById(R.id.button2);
-        RespuestaBoton3 = findViewById(R.id.button3);
+        Button respuestaBoton1 = findViewById(R.id.button);
+        Button respuestaBoton2 = findViewById(R.id.button2);
+        Button respuestaBoton3 = findViewById(R.id.button3);
 
     }
+    //endregion
 
+    //region Eventos
     public void checkAnswer(View view) {
 
         // Get pushed button.
@@ -49,7 +56,7 @@ public class PreguntasActividad extends AppCompatActivity {
 
         String alertTitle;
 
-        if (btnText.equals(rightAnswer)) {
+        if (btnText.equals("A")) {
             // Correct!!
             alertTitle = "Correcto!";
 
@@ -62,15 +69,12 @@ public class PreguntasActividad extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(alertTitle);
-        builder.setMessage("Respuesta : " + rightAnswer);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (quizArray.size() < 1) {
-                    // quizArray is empty.
-                    showResult();
+        builder.setMessage("Respuesta : " + "A");
+        builder.setPositiveButton("OK", (dialogInterface, i) -> {
+            if (quizArray.size() < 1) {
+                // quizArray is empty.
+                showResult(builder);
 
-                }
             }
         });
         builder.setCancelable(false);
@@ -79,22 +83,11 @@ public class PreguntasActividad extends AppCompatActivity {
 
     }
 
-    public void showResult() {
-
-        android.app.AlertDialog.Builder builder = null;
-        builder.setPositiveButton("Re-intentar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                recreate();
-            }
-        });
-        builder.setNegativeButton("Salir", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                finish();
-            }
-        });
+    public void showResult(  AlertDialog.Builder builder) {
+        builder.setPositiveButton("Re-intentar", (dialogInterface, i) -> recreate());
+        builder.setNegativeButton("Salir", (dialogInterface, i) -> finish());
         builder.show();
     }
+    //endregion
 }
 

@@ -59,7 +59,6 @@ public class MenuFragmento extends Fragment implements MenuPrincipalAdaptador.Li
         switch (itemsMenu) {
             case COLORES:
             case NUMEROS:
-                Toast.makeText(actividad,"hola", Toast.LENGTH_SHORT).show();
                 actividad.startActivity(MenuNvlActividad.obtenerIntencion(actividad));
                 break;
         }
