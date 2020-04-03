@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.learningbaby.babylearning.R;
-import com.learningbaby.babylearning.preguntas.PreguntasActividad;
+import com.learningbaby.babylearning.abecedario.niveluno.AbecedarioNivelUnoActividad;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
@@ -18,8 +18,6 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import butterknife.BindView;
-import butterknife.OnClick;
 
 public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
 
@@ -96,7 +94,7 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_nivel_uno:
-                Objects.requireNonNull(getContext()).startActivity(PreguntasActividad.obtenerIntencion(getContext()));
+                Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelUnoActividad.obtenerIntencion(getContext()));
                 break;
             case R.id.btn_nivel_dos:
                 Toast.makeText(getContext(), "estoy presionando el boton del nivel dos", Toast.LENGTH_LONG).show();

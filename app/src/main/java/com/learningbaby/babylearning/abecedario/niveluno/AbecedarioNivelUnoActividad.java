@@ -1,4 +1,4 @@
-package com.learningbaby.babylearning.preguntas;
+package com.learningbaby.babylearning.abecedario.niveluno;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,7 @@ import com.learningbaby.babylearning.R;
 import java.util.ArrayList;
 
 
-public class PreguntasActividad extends AppCompatActivity {
+public class AbecedarioNivelUnoActividad extends AppCompatActivity {
 
 
     //region Atributos
@@ -24,12 +24,12 @@ public class PreguntasActividad extends AppCompatActivity {
 
     //region Intencion
     public static Intent obtenerIntencion(Context contexto) {
-        return new Intent(contexto, PreguntasActividad.class);
+        return new Intent(contexto, AbecedarioNivelUnoActividad.class);
     }
     //endregion
 
     //region Constructor
-//    public PreguntasActividad(String rightAnswer) {
+//    public AbecedarioNivelUnoActividad(String rightAnswer) {
 //        this.rightAnswer = rightAnswer;
 //    }
     //endregion

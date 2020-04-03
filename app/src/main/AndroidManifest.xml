@@ -16,9 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".menuinicio.MenuInicioActividad" />
+        <activity android:name=".menuinicio.menu.MenuInicioActividad" />
         <activity android:name=".menuniveles.MenuNvlActividad" />
-        <activity android:name=".preguntas.PreguntasActividad" />
+        <activity android:name=".abecedario.niveluno.AbecedarioNivelUnoActividad" />
     </application>
 
 </manifest>

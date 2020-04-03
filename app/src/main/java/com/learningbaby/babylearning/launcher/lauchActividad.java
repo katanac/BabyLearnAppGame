@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.learningbaby.babylearning.R;
-import com.learningbaby.babylearning.menuinicio.MenuInicioActividad;
+import com.learningbaby.babylearning.menuinicio.menu.MenuInicioActividad;
 
 import androidx.annotation.Nullable;
 

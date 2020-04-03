@@ -1,4 +1,4 @@
-package com.learningbaby.babylearning.menuinicio;
+package com.learningbaby.babylearning.menuinicio.menu;
 
 import android.graphics.Rect;
 import android.view.View;
