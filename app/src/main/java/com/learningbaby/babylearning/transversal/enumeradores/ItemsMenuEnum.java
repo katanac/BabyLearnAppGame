@@ -9,9 +9,9 @@ import java.util.LinkedHashMap;
 
 public enum ItemsMenuEnum {
 
-    COLORES(1, R.drawable.colores, "Colores"),
-    NUMEROS(2, R.drawable.numeros, "Numeros"),
-    ABECEDARIO(3, R.drawable.abece, "Abecedario");
+    COLORES(0, R.drawable.colores, "Colores"),
+    NUMEROS(1, R.drawable.numeros, "Numeros"),
+    ABECEDARIO(2, R.drawable.abece, "Abecedario");
 
 
     private final int id;

@@ -1,6 +1,6 @@
 package com.learningbaby.babylearning.transversal.enumeradores;
 
-public enum AccionesFabricaMenuEnum {
+public enum TipoMenu {
     MENUCOLORES(1,"colores"),
     MENUNUMEROS(2,"numeros"),
     MENUALFABETO(3,"abecedario");
@@ -10,7 +10,7 @@ public enum AccionesFabricaMenuEnum {
     String nombreAccion;
 
 
-    AccionesFabricaMenuEnum(int idAccion, String nombreAccion) {
+    TipoMenu(int idAccion, String nombreAccion) {
         this.idAccion = idAccion;
         this.nombreAccion = nombreAccion;
     }

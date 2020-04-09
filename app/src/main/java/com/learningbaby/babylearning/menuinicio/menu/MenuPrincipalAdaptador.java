@@ -89,9 +89,9 @@ public class MenuPrincipalAdaptador extends RecyclerView.Adapter<MenuPrincipalAd
 
     private int[] obtenerId() {
         return new int[]{
+                0,
                 1,
-                2,
-                3};
+                2};
 
     }
 

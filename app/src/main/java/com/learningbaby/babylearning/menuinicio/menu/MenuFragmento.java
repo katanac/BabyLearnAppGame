@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.learningbaby.babylearning.R;
-import com.learningbaby.babylearning.menuniveles.MenuNvlActividad;
+import com.learningbaby.babylearning.menuinicio.navegador.NavegadorMenu;
 import com.learningbaby.babylearning.transversal.enumeradores.ItemsMenuEnum;
 
 import androidx.annotation.NonNull;
@@ -53,12 +53,14 @@ public class MenuFragmento extends Fragment implements MenuPrincipalAdaptador.Li
 
     @Override
     public void itemSelected(int position) {
-
-        ItemsMenuEnum itemsMenu = ItemsMenuEnum.valueOf(1);
+        ItemsMenuEnum itemsMenu = ItemsMenuEnum.valueOf(position);
         switch (itemsMenu) {
             case COLORES:
+                new NavegadorMenu().navegarMenuNivelesColores(actividad);
+                break;
             case NUMEROS:
-                actividad.startActivity(MenuNvlActividad.obtenerIntencion(actividad));
+            case ABECEDARIO:
+                new NavegadorMenu().navegarMenuNivelesAbecedario(actividad);
                 break;
         }
     }
