@@ -32,6 +32,10 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
             {"abeja","A","F","G"},
             {"burro","B","T","M"},
             {"cerdo","C","V","K"},
+            {"delfin","D","L","P"},
+            {"elefante","E","N","S"},
+            {"foca","F","X","W"},
+            {"gato","G","A","Z"},
     };
 
     //endregion
