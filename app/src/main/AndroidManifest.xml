@@ -19,6 +19,7 @@
         <activity android:name=".menuinicio.menu.MenuInicioActividad" />
         <activity android:name=".menuniveles.MenuNvlActividad" />
         <activity android:name=".abecedario.niveluno.AbecedarioNivelUnoActividad" />
+        <activity android:name=".abecedario.niveldos.AbecedarioNivelDosActividad" />
     </application>
 
 </manifest>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_nivel_dos"
+    style="@style/componente.cardview"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardBackgroundColor="#EEEEEE"
+    android:layout_gravity="start"
+    >
+
+    <ImageView
+        android:id="@+id/imv_imagen_nvl_dos"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="130dp"
+        android:fitsSystemWindows="true"
+        android:scaleType="center"
+        android:contentDescription="Esta tarjeta permite seleccionar un color, letra o numero" />
+
+</androidx.cardview.widget.CardView>

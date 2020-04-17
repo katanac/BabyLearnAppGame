@@ -34,15 +34,15 @@
         tools:layout_editor_absoluteY="270dp" />
 
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/buttonRespuesta"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="342dp"
-        android:onClick="checkAnswer"/>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonRespuesta"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="342dp"
+            android:onClick="checkAnswer"/>
 
     <Button
         android:id="@+id/button2"

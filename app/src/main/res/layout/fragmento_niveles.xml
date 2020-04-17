@@ -33,7 +33,7 @@
 
         </LinearLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_nivel_uno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,14 +42,15 @@
             android:layout_margin="10dp"
             android:text="Nivel 1"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_nivel_dos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#111119"
             android:textColor="#FFFFFF"
             android:layout_margin="10dp"
-            android:text="Nivel 2" />
+            android:text="Nivel 2"
+           />
 
     </LinearLayout>
 </ScrollView>
