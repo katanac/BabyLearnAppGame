@@ -4,7 +4,7 @@ import com.learningbaby.babylearning.R;
 
 public enum  ItensColoresEnum {
 
-    Amarrillo(0, R.drawable.amarrillo, "Amarrillo"),
+    Amarrillo(0, R.drawable.amarillo, "Amarrillo"),
     Azul(1, R.drawable.azul, "Azul"),
     Blanco(2, R.drawable.blanco, "Blanco"),
     Cafe(3, R.drawable.cafe, "Cafe"),

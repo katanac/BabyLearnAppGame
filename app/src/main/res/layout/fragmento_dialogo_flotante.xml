@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialogo_componente_string"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent=".80">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_dialogo"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@color/white" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt_dialogo_captura_texto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center|right">
+
+                <Button
+                    android:id="@+id/btn_cancelar_dialogo"
+                    style="@style/infostyle.fuente.boton"
+                    android:layout_width="wrap_content"
+                    android:text="@string/dialogo_boton_cancelar" />
+
+                <Button
+                    android:id="@+id/btn_guardar_dialogo"
+                    style="@style/infostyle.fuente.boton"
+                    android:layout_width="wrap_content"
+                    android:text="@string/dialogo_boton_agregar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>

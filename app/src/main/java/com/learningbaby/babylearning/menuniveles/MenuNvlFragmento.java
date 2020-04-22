@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import com.learningbaby.babylearning.R;
 import com.learningbaby.babylearning.abecedario.niveldos.AbecedarioNivelDosActividad;
-import com.learningbaby.babylearning.abecedario.niveldos.AbecedarioNivelDosFragmento;
 import com.learningbaby.babylearning.abecedario.niveluno.AbecedarioNivelUnoActividad;
 import com.learningbaby.babylearning.transversal.Constantes.Constantes;
 import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
@@ -22,7 +21,6 @@ import java.util.Objects;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import butterknife.OnClick;
 
 public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
 
@@ -71,33 +69,87 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
 
         carouselView.setImageListener(listenerImagen);
         carouselView.setImageClickListener(listenerOnclick);
-        carouselView.setPageCount(tipoMenu == TipoMenu.MENUCOLORES ? obtenerImagenesCarouselColores().length : obtenerImagenesCarouselAbecedario().length);
+        carouselView.setPageCount(obtenerLongitudCarrusel(tipoMenu));
 
     }
 
+    private int obtenerLongitudCarrusel(TipoMenu tipoMenu) {
+
+        if (tipoMenu == TipoMenu.MENUCOLORES) {
+            return obtenerImagenesCarouselColores().length;
+
+        } else if (tipoMenu == TipoMenu.MENUNUMEROS) {
+            return obtenerImagenesCarouselNumeros().length;
+
+        } else {
+            return obtenerImagenesCarouselAbecedario().length;
+        }
+    }
+
+
+    private int obtenerImagenesCarrusel(TipoMenu tipoMenu, int posicion) {
+
+        if (tipoMenu == TipoMenu.MENUCOLORES) {
+            return obtenerImagenesCarouselColores()[posicion];
+        } else if (tipoMenu == TipoMenu.MENUNUMEROS) {
+            return obtenerImagenesCarouselNumeros()[posicion];
+        } else {
+            return obtenerImagenesCarouselAbecedario()[posicion];
+        }
+
+    }
+
+
+    private String obteneNombresCarrusel(TipoMenu tipoMenu, int posicion) {
+        if (tipoMenu == TipoMenu.MENUCOLORES) {
+            return obtenerNombresCarrouselColores()[posicion];
+        } else if (tipoMenu == TipoMenu.MENUNUMEROS) {
+            return obtenerNombresCarrouselNumeros()[posicion];
+        } else {
+            return obtenerNombresCarrousel()[posicion];
+        }
+    }
+
+
     private int[] obtenerImagenesCarouselAbecedario() {
         return new int[]{
-                R.drawable.mostruo1,
-                R.drawable.mostruo2,
-                R.drawable.mostruo3,
-                R.drawable.mostruo4,
-                R.drawable.mostruo5,
-                R.drawable.mostruo6,
-                R.drawable.mostruo7,
-                R.drawable.mostruo8};
+                R.drawable.a,
+                R.drawable.r,
+                R.drawable.s,
+                R.drawable.o,
+                R.drawable.u,
+                R.drawable.t,
+                R.drawable.f,
+                R.drawable.c};
 
     }
 
     private int[] obtenerImagenesCarouselColores() {
         return new int[]{
                 R.drawable.azul,
-                R.drawable.amarrillo,
+                R.drawable.amarillo,
                 R.drawable.blanco,
                 R.drawable.cafe,
                 R.drawable.morado,
                 R.drawable.naranja,
                 R.drawable.rojo,
                 R.drawable.rosado};
+
+    }
+
+    private int[] obtenerImagenesCarouselNumeros() {
+        return new int[]{
+                R.drawable.cero,
+                R.drawable.uno,
+                R.drawable.dos,
+                R.drawable.tres,
+                R.drawable.cuatro,
+                R.drawable.cinco,
+                R.drawable.seis,
+                R.drawable.siete,
+                R.drawable.ocho,
+                R.drawable.nueve,
+                R.drawable.diez};
 
     }
 
@@ -126,24 +178,38 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
                 "rosado"
         };
     }
+
+
+    private String[] obtenerNombresCarrouselNumeros() {
+        return new String[]{
+                "cero",
+                "uno",
+                "dos",
+                "tres ",
+                "cuatro",
+                "cinco",
+                "seis ",
+                "siete",
+                "ocho",
+                "nueve ",
+                "diez"
+        };
+    }
     //endregion
 
     //region Listeners
-    ImageListener listenerImagen = (position, imageView) -> imageView.setImageResource(tipoMenu == TipoMenu.MENUCOLORES ? obtenerImagenesCarouselColores()[position]
-            : obtenerImagenesCarouselAbecedario()[position]);
+    ImageListener listenerImagen = (position, imageView) -> imageView.setImageResource(obtenerImagenesCarrusel(tipoMenu, position));
 
     ImageClickListener listenerOnclick = position ->
-            Toast.makeText(getActivity(), tipoMenu == TipoMenu.MENUCOLORES ? obtenerNombresCarrouselColores()[position]
-                    : obtenerNombresCarrousel()[position], Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), obteneNombresCarrusel(tipoMenu, position), Toast.LENGTH_SHORT).show();
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_nivel_uno:
-                Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelUnoActividad.obtenerIntencion(getContext()));
+                Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelUnoActividad.obtenerIntencion(getContext(), tipoMenu));
                 break;
             case R.id.btn_nivel_dos:
-                Toast.makeText(getContext(), "estoy presionando el boton del nivel dos", Toast.LENGTH_LONG).show();
                 Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelDosActividad.obtenerintencionNivelDosAbe(getContext()));
                 break;
 
