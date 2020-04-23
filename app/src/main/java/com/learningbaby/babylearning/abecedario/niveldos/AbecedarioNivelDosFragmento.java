@@ -2,27 +2,41 @@ package com.learningbaby.babylearning.abecedario.niveldos;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.learningbaby.babylearning.R;
+import com.learningbaby.babylearning.Launch.LauchActividad;
+import com.learningbaby.babylearning.menuinicio.menu.MenuInicioActividad;
+import com.learningbaby.babylearning.menuniveles.MenuNvlActividad;
 import com.learningbaby.babylearning.transversal.enumeradores.ItemsAbecedarioEnum;
+import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
+import com.learningbaby.babylearning.transversal.utilidades.DialogoFlotanteFragmento;
+
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioNivelDosAdaptador.ListadoNivelCallback {
+public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioNivelDosAdaptador.ListadoNivelCallback,
+        DialogoFlotanteFragmento.DialogoStringCallBack {
 
     private AbecedarioNivelDosAdaptador adaptador;
     private Activity actividad;
 
-    RecyclerView recyclerView;
+    private RecyclerView recyclerView;
+    private DialogoFlotanteFragmento dialogoFlotante;
 
     public static AbecedarioNivelDosFragmento obtenerInstancia() {
         return new AbecedarioNivelDosFragmento();
@@ -54,88 +68,84 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
 
 
     @Override
-    public void itemSelected(int position, int id) {
-        ItemsAbecedarioEnum abecedarioEnum = ItemsAbecedarioEnum.valueOf(id);
+    public void itemSelected(int position, ItemsAbecedarioEnum abecedarioEnum) {
+        abecedarioEnum = ItemsAbecedarioEnum.valueOf(abecedarioEnum.id);
         switch (abecedarioEnum) {
             case A:
-                Toast.makeText(actividad, "letra A", Toast.LENGTH_SHORT).show();
-                break;
             case B:
-                Toast.makeText(actividad, "letra B", Toast.LENGTH_SHORT).show();
-                break;
             case C:
-                Toast.makeText(actividad, "letra C", Toast.LENGTH_SHORT).show();
-                break;
             case D:
-                Toast.makeText(actividad, "letra D", Toast.LENGTH_SHORT).show();
-                break;
             case E:
-                Toast.makeText(actividad, "letra Ed", Toast.LENGTH_SHORT).show();
-                break;
             case F:
-                Toast.makeText(actividad, "letra F", Toast.LENGTH_SHORT).show();
-                break;
             case G:
-                Toast.makeText(actividad, "letra G", Toast.LENGTH_SHORT).show();
-                break;
             case H:
-                Toast.makeText(actividad, "letra H", Toast.LENGTH_SHORT).show();
-                break;
             case I:
-                Toast.makeText(actividad, "letra I", Toast.LENGTH_SHORT).show();
-                break;
             case J:
-                Toast.makeText(actividad, "letra J", Toast.LENGTH_SHORT).show();
-                break;
             case K:
-                Toast.makeText(actividad, "letra K", Toast.LENGTH_SHORT).show();
-                break;
             case L:
-                Toast.makeText(actividad, "letra L", Toast.LENGTH_SHORT).show();
-                break;
             case M:
-                Toast.makeText(actividad, "letra M", Toast.LENGTH_SHORT).show();
-                break;
             case N:
-                Toast.makeText(actividad, "letra N", Toast.LENGTH_SHORT).show();
-                break;
             case O:
-                Toast.makeText(actividad, "letra O", Toast.LENGTH_SHORT).show();
-                break;
             case P:
-                Toast.makeText(actividad, "letra P", Toast.LENGTH_SHORT).show();
-                break;
             case Q:
-                Toast.makeText(actividad, "letra Q", Toast.LENGTH_SHORT).show();
-                break;
             case r:
-                Toast.makeText(actividad, "letra R", Toast.LENGTH_SHORT).show();
-                break;
             case S:
-                Toast.makeText(actividad, "letra S", Toast.LENGTH_SHORT).show();
-                break;
             case T:
-                Toast.makeText(actividad, "letra T", Toast.LENGTH_SHORT).show();
-                break;
             case U:
-                Toast.makeText(actividad, "letra U", Toast.LENGTH_SHORT).show();
-                break;
             case V:
-                Toast.makeText(actividad, "letra V", Toast.LENGTH_SHORT).show();
-                break;
             case W:
-                Toast.makeText(actividad, "letra W", Toast.LENGTH_SHORT).show();
-                break;
             case X:
-                Toast.makeText(actividad, "letra X", Toast.LENGTH_SHORT).show();
-                break;
             case Y:
-                Toast.makeText(actividad, "letra Y", Toast.LENGTH_SHORT).show();
-                break;
             case Z:
-                Toast.makeText(actividad, "letra Z", Toast.LENGTH_SHORT).show();
+                if (dialogoFlotante != null) dialogoFlotante.dismiss();
+                dialogoFlotante = DialogoFlotanteFragmento.obtenerInstancia("Escribe la letra que seleccionaste",
+                        "", DialogoFlotanteFragmento.AccionesDialogoString.EDITAR, this, abecedarioEnum);
+                dialogoFlotante.show(this.getParentFragmentManager(), "tag");
                 break;
+
         }
 
+    }
+
+
+    @Override
+    public void opcionAceptar(String texto, int itemSelecionado, ItemsAbecedarioEnum abecedarioEnum) {
+        dialogoFlotante.dismiss();
+
+        if (abecedarioEnum.getNombreBandeja().equals(texto.toUpperCase())) {
+            Toast.makeText(actividad, "es correcto", Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder alertadd = new AlertDialog.Builder(actividad);
+            LayoutInflater factory = LayoutInflater.from(actividad);
+            final View view = factory.inflate(R.layout.fragmento_correcto, null);
+            alertadd.setView(view);
+
+            alertadd.setNeutralButton("¿De nuevo?", (dlg, sumthin) -> {
+                actividad.finish();
+                Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelDosActividad.obtenerintencionNivelDosAbe(getContext()));
+            });
+
+            alertadd.setNegativeButton("Salir", (dlg, sumthin) -> {
+                Objects.requireNonNull(getContext()).startActivity(MenuNvlActividad.obtenerIntencion(actividad, TipoMenu.MENUALFABETO));
+            });
+
+            alertadd.show();
+        } else {
+            Toast.makeText(actividad, "incorrecto", Toast.LENGTH_SHORT).show();
+
+            AlertDialog.Builder alertadd = new AlertDialog.Builder(actividad);
+            LayoutInflater factory = LayoutInflater.from(actividad);
+            final View view = factory.inflate(R.layout.fragmento_incorrecto, null);
+            alertadd.setView(view);
+            alertadd.setNeutralButton("Intentar", (dlg, sumthin) -> {
+
+            });
+            alertadd.setNegativeButton("Salir", (dlg, sumthin) -> {
+                actividad.finish();
+                Objects.requireNonNull(getContext()).startActivity(MenuNvlActividad.obtenerIntencion(actividad, TipoMenu.MENUALFABETO));
+            });
+
+            alertadd.show();
+        }
     }
 }

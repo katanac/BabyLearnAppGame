@@ -11,4 +11,7 @@
     <string name="buttonRespuesta2">U</string>
     <string name="todo">TODO</string>
     <string name="todo1">TODO</string>
+
+
+    <string name="dialogo_tag">dialogo_componente_string</string>
 </resources>

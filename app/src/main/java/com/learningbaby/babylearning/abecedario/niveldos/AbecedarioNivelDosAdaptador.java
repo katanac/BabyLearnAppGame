@@ -11,6 +11,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.learningbaby.babylearning.R;
 import com.learningbaby.babylearning.transversal.enumeradores.ItemsAbecedarioEnum;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,10 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
 
     private Context contexto;
     private ListadoNivelCallback listener;
+    private List<Integer> listaDeIds = new LinkedList<>();
+    int cantidad = 6, rango = 25;
+    int arreglo[] = new int[cantidad];
+
 
     public AbecedarioNivelDosAdaptador(Context contexto, ListadoNivelCallback listener) {
         this.contexto = contexto;
@@ -43,7 +50,7 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 4;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,7 +71,7 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
             int id = obtenerId()[random.nextInt(obtenerId().length)];
 
             final ItemsAbecedarioEnum abecedarioEnum = ItemsAbecedarioEnum.valueOf(id);
-            cardViewNvl.setOnClickListener(view -> listener.itemSelected(posicion, abecedarioEnum.getId()));
+            cardViewNvl.setOnClickListener(view -> listener.itemSelected(posicion, abecedarioEnum));
             Glide.with(contexto)
                     .load(abecedarioEnum.getIdRecurso())
                     .apply(new RequestOptions().placeholder(R.drawable.gradient_carga_imagen))
@@ -79,7 +86,7 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
     }
 
     interface ListadoNivelCallback {
-        void itemSelected(int position, int id);
+        void itemSelected(int position, ItemsAbecedarioEnum abecedarioEnum);
     }
 }
 
