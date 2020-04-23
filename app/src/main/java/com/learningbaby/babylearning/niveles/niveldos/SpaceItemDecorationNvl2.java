@@ -1,4 +1,4 @@
-package com.learningbaby.babylearning.abecedario.niveldos;
+package com.learningbaby.babylearning.niveles.niveldos;
 
 import android.graphics.Rect;
 import android.view.View;

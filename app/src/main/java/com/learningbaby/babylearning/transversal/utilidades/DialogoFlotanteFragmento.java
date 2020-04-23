@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.learningbaby.babylearning.R;
 import com.learningbaby.babylearning.transversal.Constantes.Constantes;
 import com.learningbaby.babylearning.transversal.enumeradores.ItemsAbecedarioEnum;
+import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -27,6 +28,7 @@ public class DialogoFlotanteFragmento extends DialogFragment {
 
     //region Atributos
     public enum AccionesDialogoString implements Serializable {EDITAR, CONSULTAR}
+    private TipoMenu tipoMenu;
 
     private DialogoStringCallBack listener;
     private EditText edtString;
@@ -42,7 +44,8 @@ public class DialogoFlotanteFragmento extends DialogFragment {
             , @NonNull String textoModificar
             , @NonNull AccionesDialogoString acciondialogo
             , @NonNull DialogoStringCallBack listener
-            , ItemsAbecedarioEnum abecedarioEnum) {
+            , ItemsAbecedarioEnum abecedarioEnum,
+                                                            TipoMenu tipoMenu) {
         DialogoFlotanteFragmento dialogo = new DialogoFlotanteFragmento();
         Bundle args = new Bundle();
         args.putString(Constantes.EXTRA_DIALOGO_TITULO, titulo);
@@ -50,6 +53,7 @@ public class DialogoFlotanteFragmento extends DialogFragment {
         args.putSerializable(Constantes.EXTRA_DIALOGO_LISTENER, listener);
         args.putSerializable(Constantes.EXTRA_DIALOGO_ACCION, acciondialogo);
         args.putSerializable(Constantes.EXTRA_DIALOGO_ENUM, abecedarioEnum);
+        args.putSerializable(Constantes.EXTRA_TIPO_MENU, tipoMenu);
         dialogo.setArguments(args);
         return dialogo;
     }
@@ -76,7 +80,7 @@ public class DialogoFlotanteFragmento extends DialogFragment {
         listener = (DialogoStringCallBack) Objects.requireNonNull(getArguments()).getSerializable(Constantes.EXTRA_DIALOGO_LISTENER);
         AccionesDialogoString accion = (AccionesDialogoString) Objects.requireNonNull(getArguments()).getSerializable(Constantes.EXTRA_DIALOGO_ACCION);
         abecedarioEnum = (ItemsAbecedarioEnum) Objects.requireNonNull(getArguments()).getSerializable(Constantes.EXTRA_DIALOGO_ENUM);
-
+        tipoMenu = (TipoMenu) getArguments().getSerializable(Constantes.EXTRA_TIPO_MENU);
 
         tvTitulo.setText(getArguments().getString(Constantes.EXTRA_DIALOGO_TITULO));
 
@@ -90,7 +94,7 @@ public class DialogoFlotanteFragmento extends DialogFragment {
             case EDITAR:
                 edtString.setEnabled(true);
                 botonAceptar.setVisibility(View.VISIBLE);
-                botonAceptar.setOnClickListener(v -> listener.opcionAceptar(edtString.getText().toString(), getArguments().getInt(Constantes.EXTRA_DIALOGO_ITEM_SELECCIONADO), abecedarioEnum));
+                botonAceptar.setOnClickListener(v -> listener.opcionAceptar(edtString.getText().toString(), getArguments().getInt(Constantes.EXTRA_DIALOGO_ITEM_SELECCIONADO), abecedarioEnum,tipoMenu));
                 break;
         }
 
@@ -109,7 +113,7 @@ public class DialogoFlotanteFragmento extends DialogFragment {
     //region Callback
     public interface DialogoStringCallBack extends Serializable {
 
-        void opcionAceptar(String texto, int itemSelecionado, ItemsAbecedarioEnum abecedarioEnum);
+        void opcionAceptar(String texto, int itemSelecionado, ItemsAbecedarioEnum abecedarioEnum, TipoMenu tipoMenu);
 
     }
 //endregion

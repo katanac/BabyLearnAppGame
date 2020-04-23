@@ -15,35 +15,20 @@ public class LauchActividad extends Activity {
 
     //region Atributos
     private int tiempo = 1;
-    int recurso;
-    ImageView imageLauncher;
-    boolean nuevaScreean;
     //endregion
 
-    public LauchActividad() {
-    }
-
-
-    public LauchActividad(int recurso, boolean nuevaScreean) {
-        this.recurso = recurso;
-        this.nuevaScreean = nuevaScreean;
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragmento_launcher);
-        imageLauncher = findViewById(R.id.imagenLaunch);
-        if (nuevaScreean){
-            imageLauncher.setImageResource(recurso);
-        }
         iniciarLaunch();
     }
 
-    public void iniciarLaunch() {
+    private void iniciarLaunch() {
         new Handler().postDelayed(() -> {
             startActivity(new Intent(new Intent(getBaseContext(), MenuInicioActividad.class)));
             finish();
-        }, tiempo * 4000);
+        }, tiempo * 2000);
     }
 }

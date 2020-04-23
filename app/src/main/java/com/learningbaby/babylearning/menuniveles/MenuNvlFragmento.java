@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.learningbaby.babylearning.R;
-import com.learningbaby.babylearning.abecedario.niveldos.AbecedarioNivelDosActividad;
-import com.learningbaby.babylearning.abecedario.niveluno.AbecedarioNivelUnoActividad;
+import com.learningbaby.babylearning.niveles.niveldos.AbecedarioNivelDosActividad;
+import com.learningbaby.babylearning.niveles.niveluno.AbecedarioNivelUnoActividad;
 import com.learningbaby.babylearning.transversal.Constantes.Constantes;
 import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
 import com.synnapps.carouselview.CarouselView;
@@ -210,7 +210,7 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
                 Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelUnoActividad.obtenerIntencion(getContext(), tipoMenu));
                 break;
             case R.id.btn_nivel_dos:
-                Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelDosActividad.obtenerintencionNivelDosAbe(getContext()));
+                Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelDosActividad.obtenerintencionNivelDosAbe(getContext(), tipoMenu));
                 break;
 
         }
