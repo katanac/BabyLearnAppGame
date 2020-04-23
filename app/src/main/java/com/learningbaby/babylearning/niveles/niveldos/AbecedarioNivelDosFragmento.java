@@ -87,7 +87,7 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
                 if (dialogoFlotante != null) dialogoFlotante.dismiss();
                 dialogoFlotante = DialogoFlotanteFragmento.obtenerInstancia("Escribe el numero que elegiste",
                         "", DialogoFlotanteFragmento.AccionesDialogoString.EDITAR, this, itemsNumerosEnum, tipoMenu);
-                dialogoFlotante.show(this.getParentFragmentManager(), "tag");
+                dialogoFlotante.show(this.getFragmentManager(), "tag");
                 break;
         }
 
@@ -111,7 +111,7 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
                 if (dialogoFlotante != null) dialogoFlotante.dismiss();
                 dialogoFlotante = DialogoFlotanteFragmento.obtenerInstancia("Escribe El que seleccionaste",
                         "", DialogoFlotanteFragmento.AccionesDialogoString.EDITAR, this, itensColoresEnum, tipoMenu);
-                dialogoFlotante.show(this.getParentFragmentManager(), "tag");
+                dialogoFlotante.show(this.getFragmentManager(), "tag");
                 break;
         }
     }
@@ -150,7 +150,7 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
                 if (dialogoFlotante != null) dialogoFlotante.dismiss();
                 dialogoFlotante = DialogoFlotanteFragmento.obtenerInstancia("Escribe la letra que seleccionaste",
                         "", DialogoFlotanteFragmento.AccionesDialogoString.EDITAR, this, abecedarioEnum, tipoMenu);
-                dialogoFlotante.show(this.getParentFragmentManager(), "tag");
+                dialogoFlotante.show(this.getFragmentManager(), "tag");
                 break;
 
         }
