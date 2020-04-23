@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fondo">
+    android:background="@drawable/fondo2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,7 +24,7 @@
             android:padding="3dp"
             android:layout_height="250dp"
             app:pageColor="@color/colorAccent"
-            app:slideInterval="2300"
+            app:slideInterval="2700"
             app:strokeColor="#FF777777"
             app:strokeWidth="1dp"
             app:autoPlay="true"
@@ -37,8 +37,8 @@
             android:id="@+id/btn_nivel_uno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:textColor="#111119"
+            android:background="#111119"
+            android:textColor="#FFFFFF"
             android:layout_margin="10dp"
             android:text="Nivel 1"/>
 
@@ -46,8 +46,8 @@
             android:id="@+id/btn_nivel_dos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:textColor="#111119"
+            android:background="#111119"
+            android:textColor="#FFFFFF"
             android:layout_margin="10dp"
             android:text="Nivel 2"
            />

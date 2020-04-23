@@ -114,13 +114,31 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
     private int[] obtenerImagenesCarouselAbecedario() {
         return new int[]{
                 R.drawable.a,
+                R.drawable.b,
+                R.drawable.c,
+                R.drawable.d,
+                R.drawable.e,
+                R.drawable.f,
+                R.drawable.g,
+                R.drawable.h,
+                R.drawable.i,
+                R.drawable.j,
+                R.drawable.k,
+                R.drawable.l,
+                R.drawable.n,
+                R.drawable.m,
+                R.drawable.o,
+                R.drawable.p,
+                R.drawable.q,
                 R.drawable.r,
                 R.drawable.s,
-                R.drawable.o,
-                R.drawable.u,
                 R.drawable.t,
-                R.drawable.f,
-                R.drawable.c};
+                R.drawable.u,
+                R.drawable.v,
+                R.drawable.w,
+                R.drawable.x,
+                R.drawable.y,
+                R.drawable.z};
 
     }
 
@@ -155,44 +173,62 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
 
     private String[] obtenerNombresCarrousel() {
         return new String[]{
-                "mostruo1",
-                "mostruo2",
-                "mostruo3",
-                "mostruo4 ",
-                "mostruo5",
-                "mostruo6",
-                "mostruo7 ",
-                "mostruo8"
+                " Esta es la letra A",
+                " Esta es la letra B",
+                " Esta es la letra C",
+                " Esta es la letra D",
+                " Esta es la letra E",
+                " Esta es la letra F",
+                " Esta es la letra G",
+                " Esta es la letra H",
+                " Esta es la letra I",
+                " Esta es la letra J",
+                " Esta es la letra K",
+                " Esta es la letra L",
+                " Esta es la letra N",
+                " Esta es la letra M",
+                " Esta es la letra O",
+                " Esta es la letra P",
+                " Esta es la letra Q",
+                " Esta es la letra R",
+                " Esta es la letra S",
+                " Esta es la letra T",
+                " Esta es la letra U",
+                " Esta es la letra V",
+                " Esta es la letra W",
+                " Esta es la letra X",
+                " Esta es la letra Y",
+                " Esta es la letra Z",
         };
     }
 
     private String[] obtenerNombresCarrouselColores() {
         return new String[]{
-                "azul",
-                "amarillo",
-                "blanco",
-                "cafe ",
-                "morado",
-                "naranja",
-                "rojo ",
-                "rosado"
+                " Este es el color azul",
+                " Este es el color amarillo",
+                "Este es el color blanco",
+                "Este es el color cafe ",
+                "Este es el color morado",
+                "Este es el color naranja",
+                "Este es el colorrojo ",
+                "Este es el color rosado"
         };
     }
 
 
     private String[] obtenerNombresCarrouselNumeros() {
         return new String[]{
-                "cero",
-                "uno",
-                "dos",
-                "tres ",
-                "cuatro",
-                "cinco",
-                "seis ",
-                "siete",
-                "ocho",
-                "nueve ",
-                "diez"
+                "Este es el numero 0",
+                "Este es el numero 1",
+                "Este es el numero 2",
+                "Este es el numero 3 ",
+                "Este es el numero 4",
+                "Este es el numero 5",
+                "Este es el numero 6 ",
+                "Este es el numero 7",
+                "Este es el numero 8",
+                "Este es el numero 9 ",
+                "Este es el numero 10"
         };
     }
     //endregion
@@ -201,7 +237,7 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
     ImageListener listenerImagen = (position, imageView) -> imageView.setImageResource(obtenerImagenesCarrusel(tipoMenu, position));
 
     ImageClickListener listenerOnclick = position ->
-            Toast.makeText(getActivity(), obteneNombresCarrusel(tipoMenu, position), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), obteneNombresCarrusel(tipoMenu, position), Toast.LENGTH_SHORT/2).show();
 
     @Override
     public void onClick(View view) {

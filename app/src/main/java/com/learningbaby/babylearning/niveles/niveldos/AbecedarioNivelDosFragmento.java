@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.learningbaby.babylearning.R;
-import com.learningbaby.babylearning.menuniveles.MenuNvlActividad;
 import com.learningbaby.babylearning.transversal.Constantes.Constantes;
 import com.learningbaby.babylearning.transversal.enumeradores.ItemsAbecedarioEnum;
+import com.learningbaby.babylearning.transversal.enumeradores.ItensColoresEnum;
 import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
+import com.learningbaby.babylearning.transversal.enumeradores.itemsNumerosEnum;
 import com.learningbaby.babylearning.transversal.utilidades.DialogoFlotanteFragmento;
 
 import java.util.Objects;
@@ -36,6 +36,7 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
         AbecedarioNivelDosFragmento fragmento = new AbecedarioNivelDosFragmento();
         Bundle argumentos = new Bundle();
         argumentos.putSerializable(Constantes.EXTRA_TIPO_MENU, tipoMenu);
+        fragmento.setArguments(argumentos);
         return fragmento;
     }
 
@@ -53,7 +54,7 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
             tipoMenu = (TipoMenu) getArguments().getSerializable(Constantes.EXTRA_TIPO_MENU);
         }
 
-        AbecedarioNivelDosAdaptador adaptador = new AbecedarioNivelDosAdaptador(actividad, this);
+        AbecedarioNivelDosAdaptador adaptador = new AbecedarioNivelDosAdaptador(actividad, this, tipoMenu);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_nivel_dos);
         recyclerView.addItemDecoration(new SpaceItemDecorationNvl2(19));
         recyclerView.setLayoutManager(new GridLayoutManager(actividad, 2));
@@ -62,15 +63,62 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
 
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         actividad = (Activity) context;
     }
 
 
+    @Override
+    public void itemSelectedNumeros(int position, itemsNumerosEnum itemsNumerosEnum) {
+        itemsNumerosEnum = itemsNumerosEnum.valueOf(itemsNumerosEnum.getId());
+        switch (itemsNumerosEnum) {
+            case Cero:
+            case Uno:
+            case Dos:
+            case Tres:
+            case Cuatro:
+            case Cinco:
+            case Seis:
+            case Siete:
+            case Ocho:
+            case Nueve:
+            case Diez:
+                if (dialogoFlotante != null) dialogoFlotante.dismiss();
+                dialogoFlotante = DialogoFlotanteFragmento.obtenerInstancia("Escribe el numero que elegiste",
+                        "", DialogoFlotanteFragmento.AccionesDialogoString.EDITAR, this, itemsNumerosEnum, tipoMenu);
+                dialogoFlotante.show(this.getParentFragmentManager(), "tag");
+                break;
+        }
+
+    }
+
+    @Override
+    public void itemSelectedColores(int position, ItensColoresEnum itensColoresEnum) {
+        itensColoresEnum = ItensColoresEnum.valueOf(itensColoresEnum.getId());
+        switch (itensColoresEnum) {
+            case Azul:
+            case Cafe:
+            case Rojo:
+            case Negro:
+            case Verde:
+            case Blanco:
+            case Morado:
+            case Rosado:
+            case Naranja:
+            case Amarrillo:
+
+                if (dialogoFlotante != null) dialogoFlotante.dismiss();
+                dialogoFlotante = DialogoFlotanteFragmento.obtenerInstancia("Escribe El que seleccionaste",
+                        "", DialogoFlotanteFragmento.AccionesDialogoString.EDITAR, this, itensColoresEnum, tipoMenu);
+                dialogoFlotante.show(this.getParentFragmentManager(), "tag");
+                break;
+        }
+    }
+
     //region CallBacks
     @Override
-    public void itemSelected(int position, ItemsAbecedarioEnum abecedarioEnum) {
+    public void itemSelectedAbecedario(int position, ItemsAbecedarioEnum abecedarioEnum) {
         abecedarioEnum = ItemsAbecedarioEnum.valueOf(abecedarioEnum.id);
         switch (abecedarioEnum) {
             case A:
@@ -111,13 +159,37 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
 
 
     @Override
-    public void opcionAceptar(String texto, int itemSelecionado, ItemsAbecedarioEnum abecedarioEnum, TipoMenu tipoMenu) {
+    public void opcionAceptarNumeros(String texto, int itemSelecionado, itemsNumerosEnum numerosEnum, TipoMenu tipoMenu) {
+            dialogoFlotante.dismiss();
+
+            if (numerosEnum.getNombreBandeja().toUpperCase().equals(texto.toUpperCase())) {
+                alertDialogoCorrecto(tipoMenu);
+            } else {
+                alertDialogoIncorrecto();
+
+            }
+    }
+
+    @Override
+    public void opcionAceptarColores(String texto, int itemSelecionado, ItensColoresEnum coloresEnum, TipoMenu tipoMenu) {
+            dialogoFlotante.dismiss();
+            if (coloresEnum.getNombreBandeja().toUpperCase().equals(texto.toUpperCase())) {
+                alertDialogoCorrecto(tipoMenu);
+            } else {
+                alertDialogoIncorrecto();
+
+            }
+    }
+
+    @Override
+    public void opcionAceptarAbecedario(String texto, int itemSelecionado, ItemsAbecedarioEnum
+            abecedarioEnum, TipoMenu tipoMenu) {
         dialogoFlotante.dismiss();
 
-        if (abecedarioEnum.getNombreBandeja().equals(texto.toUpperCase())) {
+        if (abecedarioEnum.getNombreBandeja().toUpperCase().equals(texto.toUpperCase())) {
             alertDialogoCorrecto(tipoMenu);
         } else {
-            alertDialogoIncorrecto(tipoMenu);
+            alertDialogoIncorrecto();
 
         }
     }
@@ -135,15 +207,13 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
             Objects.requireNonNull(getContext()).startActivity(AbecedarioNivelDosActividad.obtenerintencionNivelDosAbe(getContext(), tipoMenu));
         });
 
-        alertadd.setNegativeButton("Salir", (dlg, sumthin) -> {
-            actividad.finish();
-        });
+        alertadd.setNegativeButton("Salir", (dlg, sumthin) -> actividad.finish());
 
         alertadd.show();
     }
 
 
-    private void alertDialogoIncorrecto(TipoMenu tipoMenu) {
+    private void alertDialogoIncorrecto() {
 
         AlertDialog.Builder alertadd = new AlertDialog.Builder(actividad);
         LayoutInflater factory = LayoutInflater.from(actividad);
@@ -152,9 +222,7 @@ public class AbecedarioNivelDosFragmento extends Fragment implements AbecedarioN
         alertadd.setNeutralButton("Intentar", (dlg, sumthin) -> {
 
         });
-        alertadd.setNegativeButton("Salir", (dlg, sumthin) -> {
-            actividad.finish();
-        });
+        alertadd.setNegativeButton("Salir", (dlg, sumthin) -> actividad.finish());
 
         alertadd.show();
     }

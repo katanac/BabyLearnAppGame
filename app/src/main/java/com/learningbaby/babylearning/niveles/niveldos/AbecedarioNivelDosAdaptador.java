@@ -10,6 +10,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.learningbaby.babylearning.R;
 import com.learningbaby.babylearning.transversal.enumeradores.ItemsAbecedarioEnum;
+import com.learningbaby.babylearning.transversal.enumeradores.ItensColoresEnum;
+import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
+import com.learningbaby.babylearning.transversal.enumeradores.itemsNumerosEnum;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -27,12 +30,14 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
     private Context contexto;
     private ListadoNivelCallback listener;
     private List<Integer> listaDeIds = new LinkedList<>();
+    private TipoMenu tipoMenu;
     //endregion
 
     //region Sobrecarga
-    AbecedarioNivelDosAdaptador(Context contexto, ListadoNivelCallback listener) {
+    AbecedarioNivelDosAdaptador(Context contexto, ListadoNivelCallback listener, TipoMenu tipoMenu) {
         this.contexto = contexto;
         this.listener = listener;
+        this.tipoMenu = tipoMenu;
     }
     //endregion
 
@@ -68,14 +73,32 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
 
         void bin(final int posicion) {
 
-
-            final ItemsAbecedarioEnum abecedarioEnum = ItemsAbecedarioEnum.valueOf(retornoId());
-            cardViewNvl.setOnClickListener(view -> listener.itemSelected(posicion, abecedarioEnum));
-            Glide.with(contexto)
-                    .load(abecedarioEnum.getIdRecurso())
-                    .apply(new RequestOptions().placeholder(R.drawable.gradient_carga_imagen))
-                    .into(imgennvl2);
-
+            switch (tipoMenu) {
+                case MENUNUMEROS:
+                    final itemsNumerosEnum numerosEnum = itemsNumerosEnum.valueOf(retornoId());
+                    cardViewNvl.setOnClickListener(view -> listener.itemSelectedNumeros(posicion, numerosEnum));
+                    Glide.with(contexto)
+                            .load(numerosEnum.getIdRecurso())
+                            .apply(new RequestOptions().placeholder(R.drawable.gradient_carga_imagen))
+                            .into(imgennvl2);
+                    break;
+                case MENUCOLORES:
+                    final ItensColoresEnum coloresEnum = ItensColoresEnum.valueOf(retornoId());
+                    cardViewNvl.setOnClickListener(view -> listener.itemSelectedColores(posicion, coloresEnum));
+                    Glide.with(contexto)
+                            .load(coloresEnum.getIdRecurso())
+                            .apply(new RequestOptions().placeholder(R.drawable.gradient_carga_imagen))
+                            .into(imgennvl2);
+                    break;
+                case MENUALFABETO:
+                    final ItemsAbecedarioEnum abecedarioEnum = ItemsAbecedarioEnum.valueOf(retornoId());
+                    cardViewNvl.setOnClickListener(view -> listener.itemSelectedAbecedario(posicion, abecedarioEnum));
+                    Glide.with(contexto)
+                            .load(abecedarioEnum.getIdRecurso())
+                            .apply(new RequestOptions().placeholder(R.drawable.gradient_carga_imagen))
+                            .into(imgennvl2);
+                    break;
+            }
 
         }
     }
@@ -90,7 +113,6 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
 
     }
 
-
     private int[] idNumerosColores() {
         return new int[]{
                 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -99,13 +121,18 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
 
     private int retornoId() {
         Random random = new Random();
-        int id=0;
+        int id = 0;
         boolean valorRRespuesta = false;
 
-        while (!valorRRespuesta){
-            id = idAbecedario()[random.nextInt(idAbecedario().length)];
+        while (!valorRRespuesta) {
+            if (tipoMenu == TipoMenu.MENUCOLORES || tipoMenu == TipoMenu.MENUNUMEROS) {
+                id = idNumerosColores()[random.nextInt(idNumerosColores().length)];
+            } else {
+                id = idAbecedario()[random.nextInt(idAbecedario().length)];
+            }
 
-            if (!listaDeIds.contains(id)){
+
+            if (!listaDeIds.contains(id)) {
                 valorRRespuesta = true;
                 listaDeIds.add(id);
 
@@ -118,7 +145,11 @@ public class AbecedarioNivelDosAdaptador extends RecyclerView.Adapter<Abecedario
 
     //region Listener
     interface ListadoNivelCallback {
-        void itemSelected(int position, ItemsAbecedarioEnum abecedarioEnum);
+        void itemSelectedNumeros(int position, itemsNumerosEnum itemsNumerosEnum);
+
+        void itemSelectedColores(int position, ItensColoresEnum itensColoresEnum);
+
+        void itemSelectedAbecedario(int position, ItemsAbecedarioEnum abecedarioEnum);
     }
     //endregion
 
