@@ -22,5 +22,14 @@
     </style>
 
 
+    <style name="componente.button" parent="Base.Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 
 </resources>

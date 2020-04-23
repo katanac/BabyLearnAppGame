@@ -2,9 +2,12 @@ package com.learningbaby.babylearning.transversal.enumeradores;
 
 import com.learningbaby.babylearning.R;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 public enum  ItensColoresEnum {
 
-    Amarrillo(0, R.drawable.amarrillo, "Amarrillo"),
+    Amarrillo(0, R.drawable.amarillo, "Amarrillo"),
     Azul(1, R.drawable.azul, "Azul"),
     Blanco(2, R.drawable.blanco, "Blanco"),
     Cafe(3, R.drawable.cafe, "Cafe"),
@@ -19,6 +22,7 @@ public enum  ItensColoresEnum {
     private final int id;
     private final int idRecurso;
     private final String nombreBandeja;
+    private static HashMap<Integer, ItensColoresEnum> map = new LinkedHashMap<>();
 
     public int getId() {
         return id;
@@ -37,5 +41,16 @@ public enum  ItensColoresEnum {
         this.idRecurso = idRecurso;
         this.nombreBandeja = nombreBandeja;
 
+    }
+
+    static {
+        for (ItensColoresEnum item : ItensColoresEnum.values()) {
+            map.put(item.id, item);
+            map.put(item.idRecurso, item);
+        }
+    }
+
+    public static ItensColoresEnum valueOf(int id) {
+        return map.get(id);
     }
 }

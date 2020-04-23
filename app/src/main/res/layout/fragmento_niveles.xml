@@ -24,7 +24,7 @@
             android:padding="3dp"
             android:layout_height="250dp"
             app:pageColor="@color/colorAccent"
-            app:slideInterval="300"
+            app:slideInterval="2700"
             app:strokeColor="#FF777777"
             app:strokeWidth="1dp"
             app:autoPlay="true"

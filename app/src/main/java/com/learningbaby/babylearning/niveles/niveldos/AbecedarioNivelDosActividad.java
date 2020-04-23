@@ -1,10 +1,12 @@
-package com.learningbaby.babylearning.abecedario.niveldos;
+package com.learningbaby.babylearning.niveles.niveldos;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.learningbaby.babylearning.R;
+import com.learningbaby.babylearning.transversal.Constantes.Constantes;
+import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,8 +16,12 @@ import androidx.fragment.app.FragmentTransaction;
 public class AbecedarioNivelDosActividad extends AppCompatActivity {
 
 
-   public static Intent obtenerintencionNivelDosAbe(Context contexto) {
-        return new Intent(contexto, AbecedarioNivelDosActividad.class);
+    private TipoMenu tipoMenu;
+
+    public static Intent obtenerintencionNivelDosAbe(Context contexto, TipoMenu tipoMenu) {
+        Intent intencion = new Intent(contexto, AbecedarioNivelDosActividad.class);
+        intencion.putExtra(Constantes.EXTRA_TIPO_MENU, tipoMenu);
+        return intencion;
     }
 
     @Override
@@ -23,9 +29,11 @@ public class AbecedarioNivelDosActividad extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tipoMenu = (TipoMenu) getIntent().getSerializableExtra(Constantes.EXTRA_TIPO_MENU);
+
         Fragment fragmento = getSupportFragmentManager().findFragmentById(R.id.contenedor);
         if (fragmento == null) {
-            fragmento= AbecedarioNivelDosFragmento.obtenerInstancia();
+            fragmento = AbecedarioNivelDosFragmento.obtenerInstancia(tipoMenu);
             agregarFragmento(R.id.contenedor, fragmento);
         }
     }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:flexbox="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dialogo_componente_string"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    app:layout_constraintGuide_percent=".80">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:alignItems="stretch"
+        app:alignContent="stretch"
+        android:background="@color/colorPrimary"
+        app:flexDirection="row">
+
+    <TextView
+        android:id="@+id/toolbar_dialogo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:text="prueba textoi "
+        android:paddingStart="15dp"
+        android:paddingEnd="8dp"
+        app:layout_flexBasisPercent="75%"/>
+
+        <ImageButton
+            android:id="@+id/btn_aceptar_dialogo"
+            style="@style/componente.button"
+            android:layout_width="match_parent"
+            android:src="@drawable/ic_complete_24dp"
+            android:background="@color/colorPrimary"
+            app:layout_flexBasisPercent="25%"
+            android:foregroundGravity="center|right"/>
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt_dialogo_captura_texto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="1"/>
+
+
+
+        </LinearLayout>
+
+</LinearLayout>

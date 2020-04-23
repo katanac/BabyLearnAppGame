@@ -4,14 +4,14 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@drawable/fondo">
+    android:background="@color/vpi__background_holo_dark">
 
 
     <ImageView
         android:id="@+id/imagenLaunch"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/launcher"
+        android:src="@drawable/incorrecto_screen"
         android:contentDescription="@string/imagen_launcher" />
 
 

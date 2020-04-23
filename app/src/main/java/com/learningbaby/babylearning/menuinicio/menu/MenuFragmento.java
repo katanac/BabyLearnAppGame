@@ -59,6 +59,8 @@ public class MenuFragmento extends Fragment implements MenuPrincipalAdaptador.Li
                 new NavegadorMenu().navegarMenuNivelesColores(actividad);
                 break;
             case NUMEROS:
+                new NavegadorMenu().navegarMenuNivelesNumeros(actividad);
+                break;
             case ABECEDARIO:
                 new NavegadorMenu().navegarMenuNivelesAbecedario(actividad);
                 break;

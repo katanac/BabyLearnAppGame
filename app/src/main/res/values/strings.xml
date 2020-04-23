@@ -4,9 +4,14 @@
 
     <string name="item_menu_titulo_sample">Titulo Opción</string>
     <string name="Pregunta">Letra con la que empieza el nombre del animal:</string>
+    <string name="Pregunta_numero">Elige el numero correcto:</string>
+    <string name="Pregunta_color">Elige el color correcto:</string>
     <string name="buttonRespuesta">O</string>
     <string name="buttonRespuesta1">A</string>
     <string name="buttonRespuesta2">U</string>
     <string name="todo">TODO</string>
     <string name="todo1">TODO</string>
+
+
+    <string name="dialogo_tag">dialogo_componente_string</string>
 </resources>
