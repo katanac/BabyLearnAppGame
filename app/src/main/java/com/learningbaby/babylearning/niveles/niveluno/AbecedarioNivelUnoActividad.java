@@ -3,6 +3,7 @@ package com.learningbaby.babylearning.niveles.niveluno;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -12,11 +13,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.learningbaby.babylearning.R;
+import com.learningbaby.babylearning.niveles.niveldos.AbecedarioNivelDosActividad;
 import com.learningbaby.babylearning.transversal.Constantes.Constantes;
 import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Random;
 
 
@@ -42,6 +45,14 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
             {"elefante", "E", "N", "S"},
             {"foca", "F", "X", "W"},
             {"gato", "G", "A", "Z"},
+            {"hipopotamo","H","C","N"},
+            {"jirafa","J","C","L"},
+            {"koala","K","E","R"},
+            {"oso","O","H","Ñ"},
+            {"perro","P","U","S"},
+            {"serpiente","S","C","X"},
+            {"tortuga","T","F","J"},
+            {"vaca","V","B","N"},
     };
 
     private String InformacionPreguntasNumericas[][] = {
@@ -155,31 +166,12 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
 
         if (btnTexto.equals(RespuestaCorrecta)) {
             // Correct!!
-            alertTitle = "Correcto!";
+            alertDialogoCorrecto();
 
         } else {
             // Wrong
-            alertTitle = "Mal...";
+            alertDialogoIncorrecto();
         }
-
-        // Create Dialog.
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(alertTitle);
-        builder.setMessage("Respuesta : " + RespuestaCorrecta);
-        builder.setPositiveButton("OK", (dialogInterface, i) -> {
-            if (quizArray.size() < 1) {
-                // quizArray is empty.
-                showResult(builder);
-
-            } else {
-
-                MostrarSigPregunta();
-
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
 
 
     }
@@ -217,6 +209,39 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
             return R.string.Pregunta;
         }
     }
+
+    private void alertDialogoCorrecto() {
+
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(this.getBaseContext());
+        LayoutInflater factory = LayoutInflater.from(this.getBaseContext());
+        final View view = factory.inflate(R.layout.fragmento_correcto, null);
+        alertadd.setView(view);
+
+        alertadd.setNeutralButton("¿De nuevo?", (dlg, sumthin) -> {
+            finish();
+            Objects.requireNonNull(this.getBaseContext()).startActivity(AbecedarioNivelUnoActividad.obtenerIntencion(this.getBaseContext(), tipoMenu));
+        });
+
+        alertadd.setNegativeButton("Salir", (dlg, sumthin) -> finish());
+
+        alertadd.show();
+    }
+
+    private void alertDialogoIncorrecto() {
+
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(this.getBaseContext());
+        LayoutInflater factory = LayoutInflater.from(this.getBaseContext());
+        final View view = factory.inflate(R.layout.fragmento_incorrecto, null);
+        alertadd.setView(view);
+        alertadd.setNeutralButton("Intentar", (dlg, sumthin) -> {
+
+        });
+        alertadd.setNegativeButton("Salir", (dlg, sumthin) -> finish());
+
+        alertadd.show();
+    }
+
     //endregion
 }
+
 
