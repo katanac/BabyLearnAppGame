@@ -1,5 +1,6 @@
 package com.learningbaby.babylearning.niveles.niveluno;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,12 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.learningbaby.babylearning.R;
-import com.learningbaby.babylearning.niveles.niveldos.AbecedarioNivelDosActividad;
 import com.learningbaby.babylearning.transversal.Constantes.Constantes;
 import com.learningbaby.babylearning.transversal.enumeradores.TipoMenu;
 
@@ -23,7 +24,7 @@ import java.util.Objects;
 import java.util.Random;
 
 
-public class AbecedarioNivelUnoActividad extends AppCompatActivity {
+public class AbecedarioNivelUnoActividad extends AppCompatActivity implements View.OnClickListener {
 
 
     //region Atributos
@@ -31,9 +32,9 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
     private TextView tvPregunta;
     private String RespuestaCorrecta;
     private ArrayList<ArrayList<String>> quizArray = new ArrayList<>();
-    private Button respuestaBoton1;
-    private Button respuestaBoton2;
-    private Button respuestaBoton3;
+    private Button botonRespuestaUno;
+    private Button botonRespuestaDos;
+    private Button botonRespuestaTres;
 
     private TipoMenu tipoMenu;
 
@@ -45,14 +46,14 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
             {"elefante", "E", "N", "S"},
             {"foca", "F", "X", "W"},
             {"gato", "G", "A", "Z"},
-            {"hipopotamo","H","C","N"},
-            {"jirafa","J","C","L"},
-            {"koala","K","E","R"},
-            {"oso","O","H","Ñ"},
-            {"perro","P","U","S"},
-            {"serpiente","S","C","X"},
-            {"tortuga","T","F","J"},
-            {"vaca","V","B","N"},
+            {"hipopotamo", "H", "C", "N"},
+            {"jirafa", "J", "C", "L"},
+            {"koala", "K", "E", "R"},
+            {"oso", "O", "H", "Ñ"},
+            {"perro", "P", "U", "S"},
+            {"serpiente", "S", "C", "X"},
+            {"tortuga", "T", "F", "J"},
+            {"vaca", "V", "B", "N"},
     };
 
     private String InformacionPreguntasNumericas[][] = {
@@ -83,18 +84,12 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
 
     //endregion
 
-    //region Intencion
+    //region Intencionq|1
     public static Intent obtenerIntencion(Context contexto, TipoMenu tipoMenu) {
         Intent intencion = new Intent(contexto, AbecedarioNivelUnoActividad.class);
         intencion.putExtra(Constantes.EXTRA_TIPO_MENU, tipoMenu);
         return intencion;
     }
-    //endregion
-
-    //region Constructor
-//    public AbecedarioNivelUnoActividad(String rightAnswer) {
-//        this.rightAnswer = rightAnswer;
-//    }
     //endregion
 
     //region Sobrecargas
@@ -107,9 +102,16 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
         tipoMenu = (TipoMenu) getIntent().getSerializableExtra(Constantes.EXTRA_TIPO_MENU);
         tvPregunta = findViewById(R.id.textViewPregunta);
         ImagenPregunta = findViewById(R.id.ImagenPregunta);
-        respuestaBoton1 = findViewById(R.id.button);
-        respuestaBoton2 = findViewById(R.id.button2);
-        respuestaBoton3 = findViewById(R.id.button3);
+
+        //botones
+        botonRespuestaUno = findViewById(R.id.button);
+        botonRespuestaDos = findViewById(R.id.button2);
+        botonRespuestaTres = findViewById(R.id.button3);
+
+        //listeneres
+        botonRespuestaUno.setOnClickListener(this);
+        botonRespuestaDos.setOnClickListener(this);
+        botonRespuestaTres.setOnClickListener(this);
 
 
         tvPregunta.setText(obtenePreguntaArreglo());
@@ -147,9 +149,9 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
         Collections.shuffle(quiz);
 
         // Set choices.
-        respuestaBoton1.setText(quiz.get(0));
-        respuestaBoton2.setText(quiz.get(1));
-        respuestaBoton3.setText(quiz.get(2));
+        botonRespuestaUno.setText(quiz.get(0));
+        botonRespuestaDos.setText(quiz.get(1));
+        botonRespuestaTres.setText(quiz.get(2));
 
         // Remove this quiz from quizArray.
         quizArray.remove(randomNum);
@@ -162,7 +164,6 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
         Button RespuestaBtn = findViewById(view.getId());
         String btnTexto = RespuestaBtn.getText().toString();
 
-        String alertTitle;
 
         if (btnTexto.equals(RespuestaCorrecta)) {
             // Correct!!
@@ -173,13 +174,6 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
             alertDialogoIncorrecto();
         }
 
-
-    }
-
-    public void showResult(AlertDialog.Builder builder) {
-        builder.setPositiveButton("Re-intentar", (dialogInterface, i) -> recreate());
-        builder.setNegativeButton("Salir", (dialogInterface, i) -> finish());
-        builder.show();
     }
 
 
@@ -212,14 +206,14 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
 
     private void alertDialogoCorrecto() {
 
-        AlertDialog.Builder alertadd = new AlertDialog.Builder(this.getBaseContext());
-        LayoutInflater factory = LayoutInflater.from(this.getBaseContext());
-        final View view = factory.inflate(R.layout.fragmento_correcto, null);
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(this);
+        LayoutInflater factory = LayoutInflater.from(this);
+        @SuppressLint("InflateParams") final View view = factory.inflate(R.layout.fragmento_correcto, null);
         alertadd.setView(view);
 
         alertadd.setNeutralButton("¿De nuevo?", (dlg, sumthin) -> {
             finish();
-            Objects.requireNonNull(this.getBaseContext()).startActivity(AbecedarioNivelUnoActividad.obtenerIntencion(this.getBaseContext(), tipoMenu));
+            startActivity(AbecedarioNivelUnoActividad.obtenerIntencion(this, tipoMenu));
         });
 
         alertadd.setNegativeButton("Salir", (dlg, sumthin) -> finish());
@@ -229,8 +223,8 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
 
     private void alertDialogoIncorrecto() {
 
-        AlertDialog.Builder alertadd = new AlertDialog.Builder(this.getBaseContext());
-        LayoutInflater factory = LayoutInflater.from(this.getBaseContext());
+        AlertDialog.Builder alertadd = new AlertDialog.Builder(this);
+        LayoutInflater factory = LayoutInflater.from(this);
         final View view = factory.inflate(R.layout.fragmento_incorrecto, null);
         alertadd.setView(view);
         alertadd.setNeutralButton("Intentar", (dlg, sumthin) -> {
@@ -239,6 +233,18 @@ public class AbecedarioNivelUnoActividad extends AppCompatActivity {
         alertadd.setNegativeButton("Salir", (dlg, sumthin) -> finish());
 
         alertadd.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.button:
+            case R.id.button2:
+            case R.id.button3:
+                checkAnswer(view);
+                break;
+
+        }
     }
 
     //endregion

@@ -34,35 +34,32 @@
         tools:layout_editor_absoluteY="270dp" />
 
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/buttonRespuesta"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="1dp"
-            tools:layout_editor_absoluteY="342dp"
-            android:onClick="checkAnswer"/>
+            tools:layout_editor_absoluteY="342dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonRespuesta1"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="415dp"
-        android:onClick="checkAnswer"/>
+        tools:layout_editor_absoluteY="415dp"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonRespuesta2"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="491dp"
-        android:onClick="checkAnswer"/>
+        tools:layout_editor_absoluteY="491dp"/>
 
 
 
