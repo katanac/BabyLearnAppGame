@@ -9,16 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Launch.LauchActividad">
+        <activity android:name=".Launch.LauchActividad"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".menuinicio.menu.MenuInicioActividad" />
-        <activity android:name=".menuniveles.MenuNvlActividad" />
-        <activity android:name=".niveles.niveluno.AbecedarioNivelUnoActividad" />
-        <activity android:name=".niveles.niveldos.AbecedarioNivelDosActividad" />
+        <activity android:name=".menuinicio.menu.MenuInicioActividad"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".menuniveles.MenuNvlActividad"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".niveles.niveluno.AbecedarioNivelUnoActividad"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".niveles.niveldos.AbecedarioNivelDosActividad"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
