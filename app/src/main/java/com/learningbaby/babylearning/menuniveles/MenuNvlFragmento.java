@@ -227,7 +227,7 @@ public class MenuNvlFragmento extends Fragment implements View.OnClickListener {
                 "Este es el numero 6 ",
                 "Este es el numero 7",
                 "Este es el numero 8",
-                "Este es el jsjsjsjss ",
+                "Este es el numero 9 ",
                 "Este es el numero 10"
         };
     }
